@@ -2,6 +2,7 @@ import {App, IonicApp, Events} from 'ionic/ionic';
 import {ConferenceData} from './providers/conference-data';
 import {UserData} from './providers/user-data';
 import {TabsPage} from './pages/tabs/tabs';
+import {FacebookPage} from './pages/facebook/facebook';
 import {LoginPage} from './pages/login/login';
 import {SignupPage} from './pages/signup/signup';
 import {TutorialPage} from './pages/tutorial/tutorial';
@@ -20,7 +21,6 @@ class ConferenceApp {
 		// load the conference data
 		confData.load();
 
-		// We plan to add auth to only show the login page if not logged in
 		this.root = TutorialPage;
 
 		// create an list of pages that can be navigated to from the left menu
@@ -28,14 +28,17 @@ class ConferenceApp {
 		// the login page disables the left menu
 		this.pages = [
 			{title: 'Schedules', component: TabsPage, icon: 'calendar', hide: false},
-			{title: 'Login', component: LoginPage, icon: 'log-in', hide: true},
-			{title: 'Signup', component: SignupPage, icon: 'person-add', hide: true},
-			{title: 'Logout', component: LoginPage, icon: 'log-out', hide: true},
+			{title: 'Login', component: FacebookPage, icon: 'log-in', hide: true},
+			{title: 'Signup', component: FacebookPage, icon: 'person-add', hide: true},
+			{title: 'Logout', component: LoginPage, icon: 'log-out', hide: true}
 		];
 
 		// decide which menu items should be hidden by current login status stored in local storage
 		this.userData.hasLoggedIn().then((hasLoggedIn) => {
-			this.updateSideMenuItems(hasLoggedIn)
+			this.updateSideMenuItems(hasLoggedIn);
+			console.log(hasLoggedIn);
+
+			this.root = TabsPage;
 		});
 
 		this.listenToLoginEvents();

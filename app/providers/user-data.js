@@ -3,7 +3,6 @@ import {Storage, LocalStorage, Events} from 'ionic/ionic';
 
 @Injectable()
 export class UserData {
-
 	constructor(events:Events) {
 		this._favorites    = [];
 		this.storage       = new Storage(LocalStorage);
@@ -24,7 +23,7 @@ export class UserData {
 	}
 
 	removeFavorite(sessionName) {
-		let index = this._favorites.indexOf(sessionName)
+		let index = this._favorites.indexOf(sessionName);
 		if (index > -1) {
 			this._favorites.splice(index, 1);
 		}
@@ -46,6 +45,11 @@ export class UserData {
 	logout() {
 		this.storage.remove(this.HAS_LOGGED_IN);
 		this.events.publish('user:logout');
+	}
+
+	// return a promise
+	setLoggedIn() {
+		this.storage.set(this.HAS_LOGGED_IN, true);
 	}
 
 	// return a promise

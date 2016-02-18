@@ -126,7 +126,7 @@ export class ConferenceData {
 			}
 		});
 
-		// if the segement is 'favorites', but session is not a user favorite
+		// if the segment is 'favorites', but session is not a user favorite
 		// then this session does not pass the segment test
 		let matchesSegment = false;
 		if (segment === 'favorites') {

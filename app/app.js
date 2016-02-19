@@ -1,25 +1,29 @@
 import {App, IonicApp, Events} from 'ionic/ionic';
 import {ConferenceData} from './providers/conference-data';
+import {NewsletterData} from './providers/newsletter-data';
 import {UserData} from './providers/user-data';
 import {TabsPage} from './pages/tabs/tabs';
 import {FacebookPage} from './pages/facebook/facebook';
 import {LoginPage} from './pages/login/login';
 import {SignupPage} from './pages/signup/signup';
+import {NewslettersPage} from './pages/newsletters/newsletters';
+import {SettingsPage} from './pages/settings/settings';
 import {TutorialPage} from './pages/tutorial/tutorial';
 
 @App({
 	templateUrl: 'build/app.html',
-	providers  : [ConferenceData, UserData],
+	providers  : [ConferenceData, NewsletterData, UserData],
 	config     : {}
 })
 class ConferenceApp {
-	constructor(app:IonicApp, events:Events, confData:ConferenceData, userData:UserData) {
+	constructor(app:IonicApp, events:Events, newsData:NewsletterData, confData:ConferenceData, userData:UserData) {
 		this.app      = app;
 		this.userData = userData;
 		this.events   = events;
 
 		// load the conference data
 		confData.load();
+		newsData.load();
 
 		this.root = TutorialPage;
 
@@ -28,6 +32,8 @@ class ConferenceApp {
 		// the login page disables the left menu
 		this.pages = [
 			{title: 'Schedules', component: TabsPage, icon: 'calendar', hide: false},
+			{title: 'Newsletters', component: NewslettersPage, icon: 'log-out', hide: false},
+			{title: 'Settings', component: SettingsPage, icon: 'log-out', hide: false},
 			{title: 'Login', component: FacebookPage, icon: 'log-in', hide: true},
 			{title: 'Signup', component: FacebookPage, icon: 'person-add', hide: true},
 			{title: 'Logout', component: LoginPage, icon: 'log-out', hide: true}

@@ -1,0 +1,44 @@
+<ion-navbar *navbar>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-segment [(ngModel)]="segment" (change)="updateNewsletter()">
+        <ion-segment-button value="newsletters">Newsletters</ion-segment-button>
+        <ion-segment-button value="all">All</ion-segment-button>
+    </ion-segment>
+</ion-navbar>
+
+<ion-content>
+
+    <div [ngSwitch]="segment">
+        <ion-list *ngSwitchWhen="'newsletters'">
+            <ion-item>
+                <h2>Ruby</h2>
+            </ion-item>
+        </ion-list>
+
+        <ion-list *ngSwitchWhen="'all'">
+            <ion-item>
+                <h2>Luna</h2>
+            </ion-item>
+        </ion-list>
+    </div>
+
+    <div class="about-header">
+        <img src="img/ionic-logo-white.svg">
+    </div>
+    <div padding class="about-info">
+        <h4>Ionic Conference</h4>
+
+        <div>
+            <ion-icon name="calendar"></ion-icon>
+            05/17/2047
+        </div>
+
+        <div>
+            <ion-icon name="pin"></ion-icon>
+            Madison, WI
+        </div>
+    </div>
+</ion-content>

@@ -1,18 +1,30 @@
 import {IonicApp, Page, Modal, Alert, NavController} from 'ionic/ionic';
 import {NewsletterData} from '../../providers/newsletter-data';
-import {UserData} from '../../providers/user-data';
+import {DetailsPage} from '../details/details';
 
 @Page({
 	templateUrl: 'build/pages/newsletters/newsletters.html'
 })
 export class NewslettersPage {
-	constructor(app:IonicApp, nav:NavController, user:UserData, newsData:NewsletterData){
-		this.newsData = newsData;
-		
+	constructor(app:IonicApp, nav:NavController, newsData:NewsletterData) {
+		this.newsData    = newsData;
+		this.app         = app;
+		this.nav         = nav;
+		this.newsletters = [];
+
 		this.updateNewsletter();
 	}
 
-	updateNewsletter(resp){
-		console.log(resp);
+	updateNewsletter() {
+		this.newsData.getNewsletters().then(data => {
+			console.log(data);
+
+			this.newsletters = data;
+		});
+	}
+
+	goToNewsletterDetail(key) {
+		console.log(key);
+		this.nav.push(DetailsPage, key);
 	}
 }

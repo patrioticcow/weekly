@@ -7,6 +7,7 @@ import {FacebookPage} from './pages/facebook/facebook';
 import {LoginPage} from './pages/login/login';
 import {SignupPage} from './pages/signup/signup';
 import {NewslettersPage} from './pages/newsletters/newsletters';
+import {DetailsPage} from './pages/details/details';
 import {SettingsPage} from './pages/settings/settings';
 import {TutorialPage} from './pages/tutorial/tutorial';
 
@@ -33,6 +34,7 @@ class ConferenceApp {
 		this.pages = [
 			{title: 'Schedules', component: TabsPage, icon: 'calendar', hide: false},
 			{title: 'Newsletters', component: NewslettersPage, icon: 'log-out', hide: false},
+			{title: 'Details', component: DetailsPage, icon: 'log-out', hide: false},
 			{title: 'Settings', component: SettingsPage, icon: 'log-out', hide: false},
 			{title: 'Login', component: FacebookPage, icon: 'log-in', hide: true},
 			{title: 'Signup', component: FacebookPage, icon: 'person-add', hide: true},

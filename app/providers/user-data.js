@@ -60,8 +60,8 @@ export class UserData {
 	}
 
 	// Firebase
-	firebaseRef() {
-		return new Firebase(this.firebaseUrl);
+	firebaseRef(url = '') {
+		return new Firebase(this.firebaseUrl + url);
 	}
 
 }

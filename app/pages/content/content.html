@@ -14,10 +14,13 @@
     <ion-list>
         <ion-item-group>
             <ion-item-sliding *ngFor="#data of newsletters">
-                <button ion-item (click)="viewNewsletters(data.key)">
-                    <h3>{{data.name}}</h3>
-                    <p>Last update: {{data.updated}}</p>
+                <button ion-item (click)="goToNewsletterDetail(data.key)">
+                    <h3>{{data.date}}</h3>
                 </button>
+
+                <ion-item-options>
+                    <button favorite (click)="addFavorite(data.key)">Favorite</button>
+                </ion-item-options>
             </ion-item-sliding>
         </ion-item-group>
     </ion-list>

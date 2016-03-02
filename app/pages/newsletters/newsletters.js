@@ -12,10 +12,10 @@ export class NewslettersPage {
 		this.nav         = nav;
 		this.newsletters = [];
 
-		this.updateNewsletter();
+		this.getNewsletters();
 	}
 
-	updateNewsletter() {
+	getNewsletters() {
 		this.newsData.getNewsletters().then(data => {
 			console.log(data);
 
@@ -23,8 +23,8 @@ export class NewslettersPage {
 		});
 	}
 
-	goToNewsletterDetail(key) {
+	viewNewsletters(key) {
 		console.log(key);
-		this.nav.push(DetailsPage, key);
+		this.nav.push(DetailsPage, {key: key});
 	}
 }

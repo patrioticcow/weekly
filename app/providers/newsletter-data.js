@@ -8,7 +8,10 @@ export class NewsletterData {
 		this.http = http;
 		this.user = user;
 
-		this.fbNewsletters = user.firebaseRef('/newsletters');
+	}
+
+	setFirebaseRef(url = '/newsletters') {
+		this.fbNewsletters = this.user.firebaseRef(url);
 	}
 
 	load() {
@@ -18,7 +21,7 @@ export class NewsletterData {
 		}
 
 		return new Promise(resolve => {
-			this.fbNewsletters.on('value', function(resp){
+			this.fbNewsletters.on('value', function (resp) {
 				this.data = resp.val();
 
 				resolve(this.data);
@@ -27,9 +30,31 @@ export class NewsletterData {
 	}
 
 	getNewsletters() {
+		this.setFirebaseRef();
+
 		return this.load().then(data => {
 			let array = Object.keys(data).map(key => data[key]);
-			
+
+			return array;
+		});
+	}
+
+	getSubNewsletter(key) {
+		this.setFirebaseRef('/' + key + '-newsletter');
+
+		return this.load().then(data => {
+			let array = Object.keys(data).map(key => data[key]);
+
+			return array;
+		});
+	}
+
+	getNewsletterDetails(url) {
+		this.setFirebaseRef(url);
+
+		return this.load().then(data => {
+			let array = Object.keys(data).map(key => data[key]);
+
 			return array;
 		});
 	}

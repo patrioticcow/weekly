@@ -5,9 +5,9 @@ import {UserData} from './user-data';
 @Injectable()
 export class NewsletterData {
 	constructor(http:Http, user:UserData) {
-		this.http = http;
-		this.user = user;
-
+		this.http     = http;
+		this.user     = user;
+		this.useArray = true;
 	}
 
 	setFirebaseRef(url = '/newsletters') {
@@ -49,13 +49,15 @@ export class NewsletterData {
 		});
 	}
 
-	getNewsletterDetails(url) {
+	getNewsletterDetails(url, array = true) {
+		this.useArray = array;
+
 		this.setFirebaseRef(url);
 
 		return this.load().then(data => {
 			let array = Object.keys(data).map(key => data[key]);
 
-			return array;
+			return this.useArray ? array : data;
 		});
 	}
 

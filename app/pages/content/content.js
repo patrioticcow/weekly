@@ -2,61 +2,67 @@ import {IonicApp, Page, Modal, Alert, NavParams, NavController} from 'ionic/ioni
 import {NewsletterData} from '../../providers/newsletter-data';
 
 @Page({
-	templateUrl: 'build/pages/page/page.html'
+	templateUrl: 'build/pages/content/content.html'
 })
 export class ContentPage {
 	constructor(app:IonicApp, nav:NavController, navParams:NavParams, newsData:NewsletterData) {
+		this.searchQuery = '';
 		this.newsData    = newsData;
 		this.params      = navParams.data;
 		this.app         = app;
 		this.nav         = nav;
-		this.newsletters = [];
+		this.content     = [];
 
 		this.getNewsletterContent();
 	}
 
 	getNewsletterContent() {
-		let data  = this.params.data;
-		let array = [];
+		let data = this.params.data;
 
 		for (var key in data.content) {
-			let value        = data.content[key];
-			let contentArray = [];
+			let value = data.content[key];
 
-			for (var i = 1; i <= value.count; i++) {
-				let url = '/' + value.key + '/' + data.key + '-' + i;
+			this.contentPromice(value, data, value.count).then(response => {
+				this.content.push(response);
 
-				this.newsData.getNewsletterDetails(url).then(resp => {
-					contentArray.push(resp);
-
-					this.newsletters = resp;
-				});
-			}
-
-			array.push({
-				title   : value.title,
-				content : contentArray
+				console.log(response);
 			});
+
 		}
-
-		this.contentPromice.then(data => {
-			console.warn(data);
-		});
-
-		console.log(array);
 	}
 
-	contentPromice(count) {
+	contentPromice(value, data, count) {
 		return new Promise(resolve => {
-
+			let arr = [];
 			for (var i = 1; i <= count; i++) {
 				let url = '/' + value.key + '/' + data.key + '-' + i;
+				this.newsData.getNewsletterDetails(url, false).then(resp => {
+					arr.push(resp);
 
-				this.newsData.getNewsletterDetails(url).then(resp => {
-					resolve(resp);
+					resolve({
+						title  : value.title,
+						content: arr
+					});
 				});
 			}
-
 		});
+	}
+
+	getItems(searchbar) {
+		// Reset items back to all of the items
+		//this.getNewsletterContent();
+
+		// set q to the value of the searchbar
+		var q = searchbar.value;
+
+		// if the value is an empty string don't filter the items
+		if (q.trim() == '') return;
+
+		this.content = this.content.filter((v) => {
+			if (v.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+				return true;
+			}
+			return false;
+		})
 	}
 }

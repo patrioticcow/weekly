@@ -2,27 +2,31 @@
     <button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-
-    <ion-segment [(ngModel)]="segment" (change)="updateNewsletter()">
-        <ion-segment-button value="newsletters">Newsletters</ion-segment-button>
-        <ion-segment-button value="all">All</ion-segment-button>
-    </ion-segment>
 </ion-navbar>
 
-<ion-content class="newsletters">
+<ion-content class="newsletters-content gray-bg">
+    <ion-searchbar [(ngModel)]="searchQuery" (input)="getItems($event)"></ion-searchbar>
 
-    <ion-list>
-        <ion-item-group>
-            <ion-item-sliding *ngFor="#data of newsletters">
-                <button ion-item (click)="goToNewsletterDetail(data.key)">
-                    <h3>{{data.date}}</h3>
-                </button>
+    <div *ngFor="#main of content">
+        <h2 class="card-title text-center">{{main.title}}</h2>
 
-                <ion-item-options>
-                    <button favorite (click)="addFavorite(data.key)">Favorite</button>
-                </ion-item-options>
-            </ion-item-sliding>
-        </ion-item-group>
-    </ion-list>
-
+        <ion-card *ngFor="#data of main.content">
+            <ion-card-content>
+                <h2 class="card-title">{{data.title}}</h2>
+                <p>{{data.body}}</p>
+            </ion-card-content>
+            <ion-row no-padding>
+                <ion-col>
+                    <button class="button button-clear button-small button-icon-left button-clear-danger" (click)="addAsLink(data.link)">
+                        <span class="button-inner"><ion-icon name="star" role="img" class="ion-ios-star" aria-label="star"></ion-icon>Favorite</span>
+                    </button>
+                </ion-col>
+                <ion-col text-right>
+                    <button class="button button-clear button-small button-icon-left button-clear-danger" (click)="goToLink(data.link)">
+                        <span class="button-inner"><ion-icon name="share-alt" role="img" class="ion-ios-share-alt" aria-label="share alt"></ion-icon>View</span>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div>
 </ion-content>

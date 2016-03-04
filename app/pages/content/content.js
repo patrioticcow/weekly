@@ -19,10 +19,10 @@ export class ContentPage {
 	getNewsletterContent() {
 		let data = this.params.data;
 
-		for (var key in data.content) {
-			let value = data.content[key];
+		for (var name in data.content) {
+			let value = data.content[name];
 
-			this.contentPromice(value, data, value.count).then(response => {
+			this.contentPromice(value, data, value.count, name).then(response => {
 				this.content.push(response);
 
 				console.log(response);
@@ -31,15 +31,19 @@ export class ContentPage {
 		}
 	}
 
-	contentPromice(value, data, count) {
+	contentPromice(value, data, count, name) {
 		return new Promise(resolve => {
 			let arr = [];
 			for (var i = 1; i <= count; i++) {
 				let url = '/' + value.key + '/' + data.key + '-' + i;
 				this.newsData.getNewsletterDetails(url, false).then(resp => {
+					if(resp.favorite) resp.class = 'button-clear-danger';
+
 					arr.push(resp);
 
 					resolve({
+						name   : name,
+						key    : data.key,
 						title  : value.title,
 						content: arr
 					});
@@ -48,21 +52,26 @@ export class ContentPage {
 		});
 	}
 
+	addAsFavorite(i, j) {
+		let article = this.content[i];
+		let content = article.content[j];
+
+		let url = '/' + article.name + '/' + article.key + '-' + content.id;
+		let fav = content.favorite === undefined;
+
+		if(fav) content.class = 'button-clear-danger';
+
+		console.log(fav);
+		console.log(content);
+
+		this.newsData.addAsFavorite(url, content.title, fav);
+	}
+
+	goToLink(url) {
+		window.open(encodeURI(url), '_system');
+	}
+
 	getItems(searchbar) {
-		// Reset items back to all of the items
-		//this.getNewsletterContent();
-
-		// set q to the value of the searchbar
-		var q = searchbar.value;
-
-		// if the value is an empty string don't filter the items
-		if (q.trim() == '') return;
-
-		this.content = this.content.filter((v) => {
-			if (v.toLowerCase().indexOf(q.toLowerCase()) > -1) {
-				return true;
-			}
-			return false;
-		})
+		return false;
 	}
 }

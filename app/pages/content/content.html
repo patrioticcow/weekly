@@ -7,22 +7,22 @@
 <ion-content class="newsletters-content gray-bg">
     <ion-searchbar [(ngModel)]="searchQuery" (input)="getItems($event)"></ion-searchbar>
 
-    <div *ngFor="#main of content">
+    <div *ngFor="#main of content; #i=index">
         <h2 class="card-title text-center">{{main.title}}</h2>
 
-        <ion-card *ngFor="#data of main.content">
+        <ion-card *ngFor="#data of main.content; #j=index">
             <ion-card-content>
                 <h2 class="card-title">{{data.title}}</h2>
                 <p>{{data.body}}</p>
             </ion-card-content>
             <ion-row no-padding>
                 <ion-col>
-                    <button class="button button-clear button-small button-icon-left button-clear-danger" (click)="addAsLink(data.link)">
+                    <button class="button button-clear button-small button-icon-left {{data.class}}" (click)="addAsFavorite(i, j)">
                         <span class="button-inner"><ion-icon name="star" role="img" class="ion-ios-star" aria-label="star"></ion-icon>Favorite</span>
                     </button>
                 </ion-col>
                 <ion-col text-right>
-                    <button class="button button-clear button-small button-icon-left button-clear-danger" (click)="goToLink(data.link)">
+                    <button class="button button-clear button-small button-icon-left" (click)="goToLink(data.link)">
                         <span class="button-inner"><ion-icon name="share-alt" role="img" class="ion-ios-share-alt" aria-label="share alt"></ion-icon>View</span>
                     </button>
                 </ion-col>

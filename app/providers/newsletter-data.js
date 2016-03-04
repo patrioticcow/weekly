@@ -61,4 +61,14 @@ export class NewsletterData {
 		});
 	}
 
+	addAsFavorite(url, title, fav) {
+		this.setFirebaseRef(url);
+		
+		// set favorite
+		this.fbNewsletters.update({favorite: fav});
+
+		// update favorite table
+		
+	}
+
 }

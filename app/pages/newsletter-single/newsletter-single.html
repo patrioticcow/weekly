@@ -1,0 +1,28 @@
+<ion-navbar *navbar>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+</ion-navbar>
+
+<ion-content class="favorites">
+
+    <ion-card>
+        <ion-card-content>
+            <h2 class="card-title">{{content.title}}</h2>
+            <p>{{content.body}}</p>
+        </ion-card-content>
+        <ion-row no-padding>
+            <ion-col>
+                <button class="button button-clear button-small button-icon-left {{content.class}}" (click)="addAsFavorite()">
+                    <span class="button-inner"><ion-icon name="star" role="img" class="ion-ios-star" aria-label="star"></ion-icon>Favorite</span>
+                </button>
+            </ion-col>
+            <ion-col text-right>
+                <button class="button button-clear button-small button-icon-left" (click)="goToLink(content.link)">
+                    <span class="button-inner"><ion-icon name="share-alt" role="img" class="ion-ios-share-alt" aria-label="share alt"></ion-icon>View</span>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+</ion-content>

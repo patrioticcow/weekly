@@ -7,8 +7,7 @@ import {FacebookPage} from './pages/facebook/facebook';
 import {LoginPage} from './pages/login/login';
 import {SignupPage} from './pages/signup/signup';
 import {NewslettersPage} from './pages/newsletters/newsletters';
-import {DetailsPage} from './pages/details/details';
-import {ContentPage} from './pages/content/content';
+import {FavoritesPage} from './pages/favorites/favorites';
 import {SettingsPage} from './pages/settings/settings';
 import {TutorialPage} from './pages/tutorial/tutorial';
 
@@ -33,11 +32,9 @@ class ConferenceApp {
 		// the left menu only works after login
 		// the login page disables the left menu
 		this.pages = [
-			{title: 'Schedules', component: TabsPage, icon: 'calendar', hide: false},
-			{title: 'Newsletters', component: NewslettersPage, icon: 'log-out', hide: false},
-			{title: 'Details', component: DetailsPage, icon: 'log-out', hide: false},
-			{title: 'Content', component: ContentPage, icon: 'log-out', hide: false},
-			{title: 'Settings', component: SettingsPage, icon: 'log-out', hide: false},
+			{title: 'Newsletters', component: NewslettersPage, icon: 'book', hide: false},
+			{title: 'Favorites', component: FavoritesPage, icon: 'bookmarks', hide: false},
+			{title: 'Settings', component: SettingsPage, icon: 'settings', hide: false},
 			{title: 'Login', component: FacebookPage, icon: 'log-in', hide: true},
 			{title: 'Signup', component: FacebookPage, icon: 'person-add', hide: true},
 			{title: 'Logout', component: LoginPage, icon: 'log-out', hide: true}
@@ -46,9 +43,9 @@ class ConferenceApp {
 		// decide which menu items should be hidden by current login status stored in local storage
 		this.userData.hasLoggedIn().then((hasLoggedIn) => {
 			this.updateSideMenuItems(hasLoggedIn);
-			console.log(hasLoggedIn);
+			console.error(hasLoggedIn);
 
-			this.root = NewslettersPage;
+			this.root = hasLoggedIn ? NewslettersPage : FacebookPage;
 		});
 
 		this.listenToLoginEvents();

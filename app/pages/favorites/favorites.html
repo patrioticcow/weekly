@@ -9,13 +9,14 @@
     </ion-segment>
 </ion-navbar>
 
-<ion-content class="newsletters">
+<ion-content class="favorites">
+
     <ion-list>
-        <ion-item-group>
-            <ion-item-sliding *ngFor="#data of newsletters" class="{{data.key}}">
-                <button ion-item (click)="viewNewsletters(data.key)">
-                    <h3>{{data.name}}</h3>
-                    <p>Last update: {{data.updated}}</p>
+        <ion-item-group *ngFor="#main of content; #i=index">
+            <ion-item-divider light class="divider-{{main.key}}">{{main.name}}</ion-item-divider>
+            <ion-item-sliding *ngFor="#data of main.content; #j=index">
+                <button ion-item (click)="viewNewsletterContent(data.url)">
+                    <h3>{{data.title}}</h3>
                 </button>
             </ion-item-sliding>
         </ion-item-group>

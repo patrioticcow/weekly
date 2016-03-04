@@ -2,9 +2,9 @@ import {IonicApp, Page, Modal, Alert, NavParams, NavController} from 'ionic/ioni
 import {NewsletterData} from '../../providers/newsletter-data';
 
 @Page({
-	templateUrl: 'build/pages/content/content.html'
+	templateUrl: 'build/pages/newsletter-content/newsletter-content.html'
 })
-export class ContentPage {
+export class NewsletterContentPage {
 	constructor(app:IonicApp, nav:NavController, navParams:NavParams, newsData:NewsletterData) {
 		this.searchQuery = '';
 		this.newsData    = newsData;
@@ -37,7 +37,7 @@ export class ContentPage {
 			for (var i = 1; i <= count; i++) {
 				let url = '/' + value.key + '/' + data.key + '-' + i;
 				this.newsData.getNewsletterDetails(url, false).then(resp => {
-					if(resp.favorite) resp.class = 'button-clear-danger';
+					resp.class = resp.favorite ? 'button-clear-danger' : '';
 
 					arr.push(resp);
 
@@ -55,14 +55,14 @@ export class ContentPage {
 	addAsFavorite(i, j) {
 		let article = this.content[i];
 		let content = article.content[j];
+		let url     = '/' + article.name + '/' + article.key + '-' + content.id;
+		let fav     = false;
 
-		let url = '/' + article.name + '/' + article.key + '-' + content.id;
-		let fav = content.favorite === undefined;
+		if (content.favorite === undefined) fav = true;
+		if (content.favorite === false) fav = true;
 
-		if(fav) content.class = 'button-clear-danger';
-
-		console.log(fav);
-		console.log(content);
+		this.content[i].content[j].favorite = fav;
+		this.content[i].content[j].class    = fav ? 'button-clear-danger' : '';
 
 		this.newsData.addAsFavorite(url, content.title, fav);
 	}

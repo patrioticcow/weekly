@@ -1,4 +1,19 @@
-.newsletters ion-label {
-  border-left  : 2px solid #387EF5;
-  padding-left : 10px;
-}
+.white { color : #FFF !important; }
+.cloud-development ion-label { border-left : 2px solid #F44336; padding-left : 5px; }
+.divider-cloud-development ion-label { border-left : 2px solid #F44336; padding-left : 5px; background-color : #FFEBEE; }
+.bitcoin ion-label { border-left : 2px solid #E91E63; padding-left : 5px; }
+.go ion-label { border-left : 2px solid #9C27B0; padding-left : 5px; }
+.html5 ion-label { border-left : 2px solid #673AB7; padding-left : 5px; }
+.javascript ion-label { border-left : 2px solid #3F51B5; padding-left : 5px; }
+.laravel ion-label { border-left : 2px solid #2196F3; padding-left : 5px; }
+.mobile-web ion-label { border-left : 2px solid #03A9F4; padding-left : 5px; }
+.node ion-label { border-left : 2px solid #00BCD4; padding-left : 5px; }
+.postgress ion-label { border-left : 2px solid #009688; padding-left : 5px; }
+.ruby ion-label { border-left : 2px solid #4CAF50; padding-left : 5px; }
+.web-operations ion-label { border-left : 2px solid #8BC34A; padding-left : 5px; }
+.db ion-label { border-left : 2px solid #CDDC39; padding-left : 5px; }
+.php ion-label { border-left : 2px solid #FFEB3B; padding-left : 5px; }
+.divider-php-articles { border-left : 2px solid #F44336; padding-left : 5px; background-color : #FFFDE7 !important; }
+.logo { margin : 0 auto; text-align : center; }
+.facebook-page, .facebook-page ion-card { background-color : #0ECFD8; box-shadow : none; }
+.email-newsletter-image { width : 256px; height : 256px; margin : 0 auto; text-align : center; }

@@ -1,11 +1,11 @@
 import {IonicApp, Page, Modal, Alert, NavParams, NavController} from 'ionic/ionic';
 import {NewsletterData} from '../../providers/newsletter-data';
-import {ContentPage} from '../content/content';
+import {NewsletterContentPage} from '../newsletter-content/newsletter-content';
 
 @Page({
-	templateUrl: 'build/pages/details/details.html'
+	templateUrl: 'build/pages/newsletter-list/newsletter-list.html'
 })
-export class DetailsPage {
+export class NewsletterListPage {
 	constructor(app:IonicApp, nav:NavController, navParams:NavParams, newsData:NewsletterData) {
 		this.newsData    = newsData;
 		this.params      = navParams.data;
@@ -25,7 +25,7 @@ export class DetailsPage {
 	}
 
 	goToNewsletterContent(data) {
-		this.nav.push(ContentPage, {data: data});
+		this.nav.push(NewsletterContentPage, {data: data});
 	}
 
 }

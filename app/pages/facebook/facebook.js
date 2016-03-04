@@ -1,6 +1,6 @@
 import {IonicApp, Page, NavController, MenuController, Alert} from 'ionic/ionic';
 import {Storage, LocalStorage, Events} from 'ionic/ionic';
-import {TabsPage} from '../tabs/tabs';
+import {SettingsPage} from '../settings/settings';
 import {UserData} from '../../providers/user-data';
 
 @Page({
@@ -34,11 +34,12 @@ export class FacebookPage {
 					console.log(user);
 					that.storage.set('first_name', user.first_name);
 					that.storage.set('last_name', user.last_name);
+					that.storage.set('email', user.email);
 					that.storage.set('user_id', user.id);
 					that.userData.setLoggedIn();
 				});
 
-				that.nav.push(TabsPage);
+				that.nav.push(SettingsPage);
 			}
 		});
 	}

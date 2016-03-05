@@ -1,19 +1,50 @@
-.white { color : #FFF !important; }
+/**/
+$a : #E91E63;
+$b : #9C27B0;
+$c : #673AB7;
+$d : #3F51B5;
+$e : #2196F3;
+$f : #03A9F4;
+$g : #00BCD4;
+$h : #009688;
+$i : #4CAF50;
+$j : #8BC34A;
+$k : #CDDC39;
+$l : #FFEB3B;
+/**/
+.white { color : #FFFFFF !important; }
 .cloud-development ion-label { border-left : 2px solid #F44336; padding-left : 5px; }
 .divider-cloud-development ion-label { border-left : 2px solid #F44336; padding-left : 5px; background-color : #FFEBEE; }
-.bitcoin ion-label { border-left : 2px solid #E91E63; padding-left : 5px; }
-.go ion-label { border-left : 2px solid #9C27B0; padding-left : 5px; }
-.html5 ion-label { border-left : 2px solid #673AB7; padding-left : 5px; }
-.javascript ion-label { border-left : 2px solid #3F51B5; padding-left : 5px; }
-.laravel ion-label { border-left : 2px solid #2196F3; padding-left : 5px; }
-.mobile-web ion-label { border-left : 2px solid #03A9F4; padding-left : 5px; }
-.node ion-label { border-left : 2px solid #00BCD4; padding-left : 5px; }
-.postgress ion-label { border-left : 2px solid #009688; padding-left : 5px; }
-.ruby ion-label { border-left : 2px solid #4CAF50; padding-left : 5px; }
-.web-operations ion-label { border-left : 2px solid #8BC34A; padding-left : 5px; }
-.db ion-label { border-left : 2px solid #CDDC39; padding-left : 5px; }
-.php ion-label { border-left : 2px solid #FFEB3B; padding-left : 5px; }
+/**/
+.bitcoin ion-label { border-left : 2px solid $a; padding-left : 5px; }
+.go ion-label { border-left : 2px solid $b; padding-left : 5px; }
+.html5 ion-label { border-left : 2px solid $c; padding-left : 5px; }
+.javascript ion-label { border-left : 2px solid $d; padding-left : 5px; }
+.laravel ion-label { border-left : 2px solid $e; padding-left : 5px; }
+.mobile-web ion-label { border-left : 2px solid $f; padding-left : 5px; }
+.node ion-label { border-left : 2px solid $g; padding-left : 5px; }
+.php ion-label { border-left : 2px solid $h; padding-left : 5px; }
+.postgress ion-label { border-left : 2px solid $i; padding-left : 5px; }
+.ruby ion-label { border-left : 2px solid $j; padding-left : 5px; }
+.web-operations ion-label { border-left : 2px solid $k; padding-left : 5px; }
+.db ion-label { border-left : 2px solid $l; padding-left : 5px; }
+/**/
+.toggle-bitcoin .toggle-checked { background-color : $a; }
+.toggle-go .toggle-checked { background-color : $b; }
+.toggle-html5 .toggle-checked { background-color : $c; }
+.toggle-javascript .toggle-checked { background-color : $d; }
+.toggle-laravel .toggle-checked { background-color : $e; }
+.toggle-mobile-web .toggle-checked { background-color : $f; }
+.toggle-node .toggle-checked { background-color : $g; }
+.toggle-php .toggle-checked { background-color : $h; }
+.toggle-postgress .toggle-checked { background-color : $i; }
+.toggle-ruby .toggle-checked { background-color : $j; }
+.toggle-web-operations .toggle-checked { background-color : $k; }
+.toggle-db .toggle-checked { background-color : $l; }
+/**/
 .divider-php-articles { border-left : 2px solid #F44336; padding-left : 5px; background-color : #FFFDE7 !important; }
 .logo { margin : 0 auto; text-align : center; }
 .facebook-page, .facebook-page ion-card { background-color : #0ECFD8; box-shadow : none; }
 .email-newsletter-image { width : 256px; height : 256px; margin : 0 auto; text-align : center; }
+
+

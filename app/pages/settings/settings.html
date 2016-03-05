@@ -1,20 +1,27 @@
 <ion-navbar *navbar>
-    <button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Settings</ion-title>
+	<button menuToggle>
+		<ion-icon name="menu"></ion-icon>
+	</button>
+	<ion-title>Settings</ion-title>
 </ion-navbar>
 
 <ion-content>
-    <div class="about-header">
-        <img src="img/email-newsletter-white.png">
-    </div>
-    <div padding class="about-info">
-        <h4>Enable Newsletters to see them</h4>
-    </div>
+	<div class="about-header">
+		<img src="img/email-newsletter-white.png">
+	</div>
+	<div padding class="about-info">
+		<h4 class="testing">Enable Newsletters to see them</h4>
+	</div>
 
-    <ion-item>
-        <ion-label> Sam</ion-label>
-        <ion-toggle disabled checked="false"></ion-toggle>
-    </ion-item>
+	<ion-list>
+		<ion-list-header>
+			Characters
+		</ion-list-header>
+
+		<ion-item *ngFor="#data of newsletters; #i=index">
+			<ion-label>{{data.name}} <br> <small>Last updated on {{data.updated}}</small> </ion-label>
+			<ion-toggle class="toggle-{{data.key}}" (click)="onChange(i, data[user_id].checked)" checked="{{data[user_id].checked}}"></ion-toggle>
+		</ion-item>
+
+	</ion-list>
 </ion-content>

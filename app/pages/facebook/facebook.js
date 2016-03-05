@@ -1,5 +1,6 @@
 import {IonicApp, Page, NavController, MenuController, Alert} from 'ionic/ionic';
 import {Storage, LocalStorage, Events} from 'ionic/ionic';
+import {NewsletterData} from '../../providers/newsletter-data';
 import {SettingsPage} from '../settings/settings';
 import {UserData} from '../../providers/user-data';
 
@@ -7,10 +8,12 @@ import {UserData} from '../../providers/user-data';
 	templateUrl: 'build/pages/facebook/facebook.html'
 })
 export class FacebookPage {
-	constructor(nav:NavController, userData:UserData, menu:MenuController) {
+	constructor(nav:NavController, userData:UserData, menu:MenuController, newsData:NewsletterData) {
 		this.nav      = nav;
 		this.userData = userData;
+		this.newsData = newsData;
 		this.menu     = menu;
+		this.user_id  = null;
 		this.storage  = new Storage(LocalStorage);
 	}
 
@@ -39,9 +42,29 @@ export class FacebookPage {
 					that.userData.setLoggedIn();
 				});
 
-				that.nav.push(SettingsPage);
+				that.user_id = data.id;
+
+				that.newsData.getNewsletters().then(data => {
+					that.setDefault(data);
+
+					that.nav.push(SettingsPage, {user_id: that.user_id});
+				});
+
 			}
 		});
+	}
+
+	setDefault(data) {
+		for (var i = 0; i < data.length; i++) {
+			let url  = '/newsletters/' + data[i].key + '/' + this.user_id;
+			var that = this;
+
+			(function (url) {
+				that.newsData.getUserDefaultNewsletters(url).then(data => {
+					if (!data) that.newsData.setUserDefaultNewsletters(url, {checked: false});
+				});
+			})(url);
+		}
 	}
 
 	onPageDidEnter() {

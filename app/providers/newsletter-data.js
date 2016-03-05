@@ -39,6 +39,23 @@ export class NewsletterData {
 		});
 	}
 
+	getUserDefaultNewsletters(url) {
+		this.setFirebaseRef(url);
+
+		return this.load().then(data => {
+			if(!data) return null;
+			//let array = Object.keys(data).map(key => data[key]);
+			//return array;
+			return data;
+		});
+	}
+
+	setUserDefaultNewsletters(url, data) {
+		this.setFirebaseRef(url);
+
+		this.fbNewsletters.update(data);
+	}
+
 	getSubNewsletter(key) {
 		this.setFirebaseRef('/' + key + '-newsletter');
 

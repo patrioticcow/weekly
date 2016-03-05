@@ -8,6 +8,7 @@ export class UserData {
 		this.storage       = new Storage(LocalStorage);
 		this.events        = events;
 		this.HAS_LOGGED_IN = 'hasLoggedIn';
+		this.USER_ID       = 'user_id';
 		this.username      = '';
 		this.password      = '';
 		this.firebaseUrl   = "https://weeklynewsletter.firebaseio.com";
@@ -55,6 +56,12 @@ export class UserData {
 	// return a promise
 	hasLoggedIn() {
 		return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
+			return value;
+		});
+	}
+
+	getUserId() {
+		return this.storage.get(this.USER_ID).then((value) => {
 			return value;
 		});
 	}

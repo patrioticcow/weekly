@@ -29,7 +29,19 @@ export class NewsletterData {
 		});
 	}
 
-	getNewsletters() {
+	getNewsletters(user_id) {
+		this.setFirebaseRef();
+
+		return this.load().then(data => {
+			let array = Object.keys(data).map(key => data[key]);
+
+			return array.filter(data => {
+				if (data[user_id].checked === true) return data;
+			});
+		});
+	}
+
+	getSettingsNewsletters() {
 		this.setFirebaseRef();
 
 		return this.load().then(data => {
@@ -43,7 +55,7 @@ export class NewsletterData {
 		this.setFirebaseRef(url);
 
 		return this.load().then(data => {
-			if(!data) return null;
+			if (!data) return null;
 			//let array = Object.keys(data).map(key => data[key]);
 			//return array;
 			return data;

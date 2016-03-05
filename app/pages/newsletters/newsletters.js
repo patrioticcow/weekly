@@ -25,7 +25,7 @@ export class NewslettersPage {
 	}
 
 	getNewsletters() {
-		this.newsData.getNewsletters().then(data => {
+		this.newsData.getNewsletters(this.user_id).then(data => {
 			console.log(data);
 
 			this.newsletters = data;

@@ -22,7 +22,7 @@ export class SettingsPage {
 	}
 
 	getNewsletters() {
-		this.newsData.getNewsletters().then(data => {
+		this.newsData.getSettingsNewsletters().then(data => {
 			this.newsletters = data;
 		});
 	}

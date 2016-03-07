@@ -13,10 +13,8 @@ export class NewsletterContentPage {
 		this.app         = app;
 		this.nav         = nav;
 		this.showAll     = true;
-		this.dataAlert   = null;
 		this.content     = [];
-
-		this.dataAlert = this.initiateAlert();
+		this.dataAlert   = this.initiateAlert();
 	}
 
 	onPageDidEnter() {

@@ -5,18 +5,41 @@ import {NewsletterData} from '../../providers/newsletter-data';
 	templateUrl: 'build/pages/newsletter-content/newsletter-content.html'
 })
 export class NewsletterContentPage {
-	constructor(app:IonicApp, platform: Platform, nav:NavController, navParams:NavParams, newsData:NewsletterData) {
+	constructor(app:IonicApp, platform:Platform, nav:NavController, navParams:NavParams, newsData:NewsletterData) {
 		this.searchQuery = '';
 		this.platform    = platform;
 		this.newsData    = newsData;
 		this.params      = navParams.data;
 		this.app         = app;
 		this.nav         = nav;
+		this.showAll     = true;
+		this.dataAlert   = null;
 		this.content     = [];
+
+		this.dataAlert = this.initiateAlert();
 	}
 
-	onPageDidEnter () {
+	onPageDidEnter() {
 		this.getNewsletterContent();
+	}
+
+	filterContent() {
+		this.nav.present(this.dataAlert);
+	}
+
+	initiateAlert() {
+		let alert = Alert.create();
+		alert.setTitle('Show only..');
+		alert.addInput({type: 'radio', label: 'Show all', value: true, checked: false});
+		alert.addButton('Cancel');
+		alert.addButton({
+			text   : 'Ok',
+			handler: data => {
+				if (data !== undefined) this.showAll = data;
+			}
+		});
+
+		return alert;
 	}
 
 	getNewsletterContent() {
@@ -26,11 +49,16 @@ export class NewsletterContentPage {
 			let value = data.content[name];
 
 			this.contentPromice(value, data, value.count, name).then(response => {
-				this.content.push(response);
+				console.warn(response);
+				console.warn(this.showAll);
+				if (this.showAll !== true) {
+					if (this.showAll === response.name) this.content = [response];
+				} else {
+					this.content.push(response);
+				}
 
-				console.log(response);
+				this.dataAlert.addInput({type: 'radio', label: response.title, value: response.name, checked: false});
 			});
-
 		}
 	}
 

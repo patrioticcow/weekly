@@ -12,9 +12,10 @@ export class NewsletterSinglePage {
 		this.app         = app;
 		this.nav         = nav;
 		this.content     = [];
+	}
 
+	onPageDidEnter () {
 		console.log(this.params.url);
-
 		this.getFavoritesContent();
 	}
 

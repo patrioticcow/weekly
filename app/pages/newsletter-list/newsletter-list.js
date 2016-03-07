@@ -12,7 +12,9 @@ export class NewsletterListPage {
 		this.app         = app;
 		this.nav         = nav;
 		this.newsletters = [];
+	}
 
+	onPageDidEnter () {
 		this.getSubNewsletter();
 	}
 

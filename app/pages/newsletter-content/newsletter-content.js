@@ -1,18 +1,21 @@
-import {IonicApp, Page, Modal, Alert, NavParams, NavController} from 'ionic/ionic';
+import {IonicApp, Platform, Page, Modal, Alert, NavParams, NavController} from 'ionic/ionic';
 import {NewsletterData} from '../../providers/newsletter-data';
 
 @Page({
 	templateUrl: 'build/pages/newsletter-content/newsletter-content.html'
 })
 export class NewsletterContentPage {
-	constructor(app:IonicApp, nav:NavController, navParams:NavParams, newsData:NewsletterData) {
+	constructor(app:IonicApp, platform: Platform, nav:NavController, navParams:NavParams, newsData:NewsletterData) {
 		this.searchQuery = '';
+		this.platform    = platform;
 		this.newsData    = newsData;
 		this.params      = navParams.data;
 		this.app         = app;
 		this.nav         = nav;
 		this.content     = [];
+	}
 
+	onPageDidEnter () {
 		this.getNewsletterContent();
 	}
 

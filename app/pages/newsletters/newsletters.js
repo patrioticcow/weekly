@@ -16,7 +16,9 @@ export class NewslettersPage {
 		this.newsletters = [];
 		this.segment     = 'newsletters';
 		this.user_id     = null;
+	}
 
+	onPageDidEnter () {
 		this.userData.getUserId().then((user_id) => {
 			this.user_id = user_id;
 

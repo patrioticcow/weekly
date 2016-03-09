@@ -12,6 +12,7 @@ $j : #8BC34A;
 $k : #CDDC39;
 $l : #FFEB3B;
 /**/
+.m-0 { margin : 0; }
 .white { color : #FFFFFF !important; }
 .cloud-development ion-label { border-left : 2px solid #F44336; padding-left : 5px; }
 .divider-cloud-development ion-label { border-left : 2px solid #F44336; padding-left : 5px; background-color : #FFEBEE; }
@@ -42,7 +43,6 @@ $l : #FFEB3B;
 .toggle-web-operations .toggle-checked { background-color : $k; }
 .toggle-db .toggle-checked { background-color : $l; }
 /**/
-.divider-php-articles { border-left : 2px solid #F44336; padding-left : 5px; background-color : #FFFDE7 !important; }
 .logo { margin : 0 auto; text-align : center; }
 .facebook-page, .facebook-page ion-card { background-color : #0ECFD8; box-shadow : none; }
 .email-newsletter-image { width : 256px; height : 256px; margin : 0 auto; text-align : center; }

@@ -1,11 +1,10 @@
-import {App, IonicApp, Events} from 'ionic/ionic';
+import {App, IonicApp, Events, Platform} from 'ionic-angular';
+import {StatusBar} from 'ionic-native';
 import {ConferenceData} from './providers/conference-data';
 import {NewsletterData} from './providers/newsletter-data';
 import {UserData} from './providers/user-data';
-import {TabsPage} from './pages/tabs/tabs';
 import {FacebookPage} from './pages/facebook/facebook';
 import {LoginPage} from './pages/login/login';
-import {SignupPage} from './pages/signup/signup';
 import {NewslettersPage} from './pages/newsletters/newsletters';
 import {FavoritesPage} from './pages/favorites/favorites';
 import {SettingsPage} from './pages/settings/settings';
@@ -17,7 +16,12 @@ import {TutorialPage} from './pages/tutorial/tutorial';
 	config     : {}
 })
 class ConferenceApp {
-	constructor(app:IonicApp, events:Events, newsData:NewsletterData, confData:ConferenceData, userData:UserData) {
+	static get parameters() {
+		return [
+			[IonicApp], [Events], [NewsletterData], [ConferenceData], [UserData], [Platform]
+		]
+	}
+	constructor(app, events, newsData, confData, userData, platform) {
 		this.app      = app;
 		this.userData = userData;
 		this.events   = events;

@@ -1,4 +1,4 @@
-import {IonicApp, Page, Modal, Alert, NavController} from 'ionic/ionic';
+import {IonicApp, Page, Modal, Alert, NavController} from 'ionic-angular';
 import {NewsletterData} from '../../providers/newsletter-data';
 import {UserData} from '../../providers/user-data';
 import {NewsletterListPage} from '../newsletter-list/newsletter-list';
@@ -8,7 +8,10 @@ import {FavoritesPage} from '../../pages/favorites/favorites';
 	templateUrl: 'build/pages/newsletters/newsletters.html'
 })
 export class NewslettersPage {
-	constructor(app:IonicApp, nav:NavController, userData:UserData, newsData:NewsletterData) {
+	static get parameters(){
+		return [[IonicApp], [NavController], [UserData], [NewsletterData]];
+	}
+	constructor(app, nav, userData, newsData) {
 		this.userData    = userData;
 		this.newsData    = newsData;
 		this.app         = app;

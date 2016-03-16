@@ -1,4 +1,4 @@
-import {IonicApp, Page, NavController, MenuController} from 'ionic/ionic';
+import {IonicApp, Page, NavController, MenuController} from 'ionic-angular';
 import {TabsPage} from '../tabs/tabs';
 import {LoginPage} from '../login/login';
 import {FacebookPage} from '../login/login';
@@ -7,7 +7,10 @@ import {FacebookPage} from '../login/login';
 	templateUrl: 'build/pages/tutorial/tutorial.html'
 })
 export class TutorialPage {
-	constructor(app:IonicApp, nav:NavController, menu:MenuController) {
+	static get parameters(){
+		return [[IonicApp], [NavController], [MenuController]];
+	}
+	constructor(app, nav, menu) {
 		this.app  = app;
 		this.nav  = nav;
 		this.menu = menu;

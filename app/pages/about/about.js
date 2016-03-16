@@ -1,4 +1,4 @@
-import {Page} from 'ionic/ionic';
+import {Page} from 'ionic-angular';
 
 @Page({
 	templateUrl: 'build/pages/about/about.html'

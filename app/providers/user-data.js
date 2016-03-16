@@ -1,9 +1,12 @@
 import {Injectable} from 'angular2/core';
-import {Storage, LocalStorage, Events} from 'ionic/ionic';
+import {Storage, LocalStorage, Events} from 'ionic-angular';
 
 @Injectable()
 export class UserData {
-	constructor(events:Events) {
+	static get parameters() {
+		return [[Events]];
+	}
+	constructor(events) {
 		this._favorites    = [];
 		this.storage       = new Storage(LocalStorage);
 		this.events        = events;

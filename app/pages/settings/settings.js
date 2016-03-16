@@ -1,4 +1,4 @@
-import {IonicApp, Page, Modal, Alert, NavParams, NavController} from 'ionic/ionic';
+import {IonicApp, Page, Modal, Alert, NavParams, NavController} from 'ionic-angular';
 import {NewsletterData} from '../../providers/newsletter-data';
 import {UserData} from '../../providers/user-data';
 
@@ -6,7 +6,11 @@ import {UserData} from '../../providers/user-data';
 	templateUrl: 'build/pages/settings/settings.html'
 })
 export class SettingsPage {
-	constructor(app:IonicApp, nav:NavController, userData:UserData, navParams:NavParams, newsData:NewsletterData) {
+	static get parameters() {
+		return [[IonicApp], [NavController], [UserData], [NavParams], [NewsletterData]];
+	}
+
+	constructor(app, nav, userData, navParams, newsData) {
 		this.newsData    = newsData;
 		this.userData    = userData;
 		this.params      = navParams.data;
@@ -30,7 +34,7 @@ export class SettingsPage {
 	onChange(i, checked) {
 		this.newsletters[i][this.user_id].checked = !checked;
 
-		let url  = '/newsletters/' + this.newsletters[i].key + '/' + this.user_id;
+		let url = '/newsletters/' + this.newsletters[i].key + '/' + this.user_id;
 		this.newsData.setUserDefaultNewsletters(url, {checked: !checked});
 	}
 }

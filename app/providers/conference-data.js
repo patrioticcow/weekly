@@ -4,7 +4,11 @@ import {UserData} from './user-data';
 
 @Injectable()
 export class ConferenceData {
-	constructor(http:Http, user:UserData) {
+	static get parameters(){
+		return [[Http], [UserData]];
+	}
+	
+	constructor(http, user) {
 		// inject the Http provider and set to this instance
 		this.http = http;
 		this.user = user;

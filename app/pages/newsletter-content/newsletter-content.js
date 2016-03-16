@@ -1,11 +1,14 @@
-import {IonicApp, Platform, Page, Modal, Alert, NavParams, NavController} from 'ionic/ionic';
+import {IonicApp, Platform, Page, Modal, Alert, NavParams, NavController} from 'ionic-angular';
 import {NewsletterData} from '../../providers/newsletter-data';
 
 @Page({
 	templateUrl: 'build/pages/newsletter-content/newsletter-content.html'
 })
 export class NewsletterContentPage {
-	constructor(app:IonicApp, platform:Platform, nav:NavController, navParams:NavParams, newsData:NewsletterData) {
+	static get parameters(){
+		return [[IonicApp], [Platform], [NavController], [NavParams], [NewsletterData]];
+	}
+	constructor(app, platform, nav, navParams, newsData) {
 		this.searchQuery = '';
 		this.platform    = platform;
 		this.newsData    = newsData;

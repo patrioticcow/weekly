@@ -4,7 +4,10 @@ import {UserData} from './user-data';
 
 @Injectable()
 export class NewsletterData {
-	constructor(http:Http, user:UserData) {
+	static get parameters(){
+		return [[Http], [UserData]];
+	}
+	constructor(http, user) {
 		this.http     = http;
 		this.user     = user;
 		this.useArray = true;
@@ -15,16 +18,9 @@ export class NewsletterData {
 	}
 
 	load() {
-		if (this.data) {
-			// already loaded data
-			return Promise.resolve(this.data);
-		}
-
 		return new Promise(resolve => {
 			this.fbNewsletters.on('value', function (resp) {
-				this.data = resp.val();
-
-				resolve(this.data);
+				resolve(resp.val());
 			});
 		});
 	}

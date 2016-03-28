@@ -57,8 +57,8 @@ export class FacebookPage {
 
 				that.newsData.getNewsletters(data.id).then(data => {
 					console.log(data);
-					//that.setDefault(data);
-					//that.nav.push(SettingsPage, {user_id: that.user_id});
+					that.setDefault(data);
+					that.nav.push(SettingsPage, {user_id: that.user_id});
 				});
 
 			}

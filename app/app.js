@@ -4,7 +4,6 @@ import {ConferenceData} from './providers/conference-data';
 import {NewsletterData} from './providers/newsletter-data';
 import {UserData} from './providers/user-data';
 import {FacebookPage} from './pages/facebook/facebook';
-import {LoginPage} from './pages/login/login';
 import {NewslettersPage} from './pages/newsletters/newsletters';
 import {FavoritesPage} from './pages/favorites/favorites';
 import {SettingsPage} from './pages/settings/settings';
@@ -39,9 +38,7 @@ class ConferenceApp {
 			{title: 'Newsletters', component: NewslettersPage, icon: 'book', hide: false},
 			{title: 'Favorites', component: FavoritesPage, icon: 'bookmarks', hide: false},
 			{title: 'Settings', component: SettingsPage, icon: 'settings', hide: false},
-			{title: 'Login', component: FacebookPage, icon: 'log-in', hide: true},
-			{title: 'Signup', component: FacebookPage, icon: 'person-add', hide: true},
-			{title: 'Logout', component: LoginPage, icon: 'log-out', hide: true}
+			{title: 'Signup', component: FacebookPage, icon: 'person-add', hide: true}
 		];
 
 		// decide which menu items should be hidden by current login status stored in local storage

@@ -14,12 +14,14 @@ import {TutorialPage} from './pages/tutorial/tutorial';
 	providers  : [ConferenceData, NewsletterData, UserData],
 	config     : {}
 })
+
 class ConferenceApp {
 	static get parameters() {
 		return [
 			[IonicApp], [Events], [NewsletterData], [ConferenceData], [UserData], [Platform]
 		]
 	}
+
 	constructor(app, events, newsData, confData, userData, platform) {
 		this.app      = app;
 		this.userData = userData;
@@ -79,13 +81,9 @@ class ConferenceApp {
 
 	updateSideMenuItems(hasLoggedIn) {
 		if (hasLoggedIn) {
-			this.findMenuItemByTitle('Login').hide  = true;
 			this.findMenuItemByTitle('Signup').hide = true;
-			this.findMenuItemByTitle('Logout').hide = false;
 		} else {
-			this.findMenuItemByTitle('Login').hide  = false;
 			this.findMenuItemByTitle('Signup').hide = false;
-			this.findMenuItemByTitle('Logout').hide = true;
 		}
 	}
 

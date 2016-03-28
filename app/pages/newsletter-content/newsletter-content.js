@@ -17,7 +17,6 @@ export class NewsletterContentPage {
 		this.nav         = nav;
 		this.showAll     = true;
 		this.content     = [];
-		this.dataAlert   = this.initiateAlert();
 	}
 
 	onPageDidEnter() {
@@ -25,7 +24,7 @@ export class NewsletterContentPage {
 	}
 
 	filterContent() {
-		this.nav.present(this.dataAlert);
+		this.nav.present(this.initiateAlert());
 	}
 
 	initiateAlert() {
@@ -40,6 +39,12 @@ export class NewsletterContentPage {
 			}
 		});
 
+		if (this.content) {
+			for (let i in this.content) {
+				alert.addInput({type: 'radio', label: this.content[i].title, value: this.content[i].name, checked: false});
+			}
+		}
+
 		return alert;
 	}
 
@@ -50,15 +55,11 @@ export class NewsletterContentPage {
 			let value = data.content[name];
 
 			this.contentPromice(value, data, value.count, name).then(response => {
-				console.warn(response);
-				console.warn(this.showAll);
 				if (this.showAll !== true) {
 					if (this.showAll === response.name) this.content = [response];
 				} else {
 					this.content.push(response);
 				}
-
-				this.dataAlert.addInput({type: 'radio', label: response.title, value: response.name, checked: false});
 			});
 		}
 	}

@@ -4,7 +4,7 @@
     </button>
     <ion-title>Newsletter</ion-title>
     <ion-buttons end>
-        <button (click)="filterContent()">
+        <button (click)="showFilterContent()">
             <ion-icon name="more"></ion-icon>
         </button>
     </ion-buttons>
@@ -13,7 +13,7 @@
 <ion-content class="newsletters-content gray-bg">
     <ion-searchbar [(ngModel)]="searchQuery" (input)="getItems($event)"></ion-searchbar>
 
-    <div *ngFor="#main of content; #i=index">
+    <div *ngFor="#main of content; #i=index" *ngIf="main.visible">
         <h2 class="card-title text-center">{{main.title}}</h2>
 
         <ion-card *ngFor="#data of main.content; #j=index">

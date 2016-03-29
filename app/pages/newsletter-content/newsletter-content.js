@@ -5,9 +5,10 @@ import {NewsletterData} from '../../providers/newsletter-data';
 	templateUrl: 'build/pages/newsletter-content/newsletter-content.html'
 })
 export class NewsletterContentPage {
-	static get parameters(){
+	static get parameters() {
 		return [[IonicApp], [Platform], [NavController], [NavParams], [NewsletterData]];
 	}
+
 	constructor(app, platform, nav, navParams, newsData) {
 		this.searchQuery = '';
 		this.platform    = platform;
@@ -23,7 +24,7 @@ export class NewsletterContentPage {
 		this.getNewsletterContent();
 	}
 
-	filterContent() {
+	showFilterContent() {
 		this.nav.present(this.initiateAlert());
 	}
 
@@ -35,7 +36,10 @@ export class NewsletterContentPage {
 		alert.addButton({
 			text   : 'Ok',
 			handler: data => {
-				if (data !== undefined) this.showAll = data;
+				if (data !== undefined) {
+					this.showAll = data;
+					this.filterContent();
+				}
 			}
 		});
 
@@ -46,6 +50,18 @@ export class NewsletterContentPage {
 		}
 
 		return alert;
+	}
+
+	filterContent() {
+		if (this.content) {
+			for (let i in this.content) {
+				if (this.showAll !== true && this.showAll !== this.content[i].name) this.content[i].visible = false;
+			}
+		}
+
+		console.log(this.showAll);
+		console.log(this.showAll === true);
+		console.log(this.content);
 	}
 
 	getNewsletterContent() {
@@ -78,7 +94,8 @@ export class NewsletterContentPage {
 						name   : name,
 						key    : data.key,
 						title  : value.title,
-						content: arr
+						content: arr,
+						visible: true
 					});
 				});
 			}
